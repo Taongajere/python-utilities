@@ -37,15 +37,32 @@ questions = {
     'name': 'What is your name?',
     'profession':'what do you do for a living?',
     'passion':'in one line what are you most passionate about?',
-    'emoji':'what is your favourite emoji',
-    'website': 'what is your website or hundle?'
 }
 
+
 answers = {}
+
+
 
 for key, question in questions.items():
     ans = input(question).strip()
     answers[key] = ans
 
+
+optional_questions = {
+    'emoji':'what is your favourite emoji?',
+    'hundle': 'what is your hundle?'
+}
+
+place_holder = {
+    'hundle': f"iam{answers['name']}"
+}
+
+optional_answers = {}
+for key, question in optional_questions.items():
+    ans = input(question).strip()
+    if ans == '':
+        optional_answers[key] = place_holder[key]
+        answers.update(optional_answers)
 
 print(answers)
