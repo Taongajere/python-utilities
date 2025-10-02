@@ -90,4 +90,12 @@ for key, emoji_question in emoji_questions.items():
         emoji_answer[key] = ans
     answers.update(emoji_answer)
 
-print(answers)
+
+# bio 
+bio = (
+    f"{answers['emoji']} {answers['name']} | {answers['profession']}",
+    f"{word2emoji('light')} I absolutely love {answers['passion']}",
+    f"{word2emoji('link')} {answers['hundle']}"
+)
+
+print('\n'.join(bio))
