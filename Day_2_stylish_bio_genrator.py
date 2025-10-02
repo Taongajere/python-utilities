@@ -36,7 +36,25 @@ Bonus:
 - Let the user pick from 2-3 different layout styles.
 - Ask the user if they want to save the result into a `.txt` file.
 """
+
+
+import textwrap
+
 #questions
+styles = """
+1. Simple lines
+2. Vertical flair
+3. Emoji sandwich
+"""
+print(styles)
+
+picked_style = input('choose your style (1, 2, 3): ').strip()
+
+if picked_style not in ['1', '2', '3']:
+    print('invalid style, defaulting to style 1')
+    picked_style = '1'
+
+
 questions = {
     'name': 'What is your name?',
     'profession':'what do you do for a living?',
@@ -91,11 +109,47 @@ for key, emoji_question in emoji_questions.items():
     answers.update(emoji_answer)
 
 
-# bio 
-bio = (
+# bio print
+bio_1 = (
     f"{answers['emoji']} {answers['name']} | {answers['profession']}",
     f"{word2emoji('light')} I absolutely love {answers['passion']}",
     f"{word2emoji('link')} {answers['hundle']}"
 )
 
-print('\n'.join(bio))
+bio_2 = (
+    f"{answers['emoji']} {answers['name']}",
+    f"{answers['profession']}",
+    f"{word2emoji('light')} {answers['passion']}",
+    f"{word2emoji('link')} {answers['hundle']}"
+)
+
+bio_3 = (
+    f"{answers['emoji']} {answers['name']} {answers['emoji']}",
+    f"{answers['profession']}",
+    f"{word2emoji('light')} {answers['passion']}",
+    f"{word2emoji('link')} {answers['hundle']}"
+)
+
+def style_picker(style: str) -> str:
+    if style == '1':
+        return '\n'.join(bio_1)
+    elif style == '2':
+        return '\n'.join(bio_2)
+    else:
+        return '\n'.join(bio_3)
+    
+final_bio = style_picker(picked_style)
+
+print("\nYour stylish bio:\n")
+print("*" * 50)
+print(textwrap.dedent(final_bio))
+print("*" * 50)
+
+# saving file 
+save = input("Do you want to save this bio to a text file? (y/n): ").lower()
+
+if save == 'y':
+    filename = f"{answers['name'].lower().replace(' ', '_')}_bio.txt"
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(final_bio)
+    print("file saved")
