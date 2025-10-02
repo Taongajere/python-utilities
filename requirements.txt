@@ -1,0 +1,2 @@
+emoji
+word2emoji
