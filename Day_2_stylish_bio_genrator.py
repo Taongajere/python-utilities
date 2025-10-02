@@ -1,3 +1,7 @@
+import emoji
+import word2emoji
+
+
 """
 Challenge: Stylish Bio Generator for Instagram/Twitter
 
@@ -36,7 +40,7 @@ Bonus:
 questions = {
     'name': 'What is your name?',
     'profession':'what do you do for a living?',
-    'passion':'in one line what are you most passionate about?',
+    'passion':'in one word what are you most passionate about)?',
 }
 
 
@@ -49,8 +53,8 @@ for key, question in questions.items():
     answers[key] = ans
 
 
+# hundle is optional
 optional_questions = {
-    'emoji':'what is your favourite emoji?',
     'hundle': 'what is your hundle?'
 }
 
@@ -64,5 +68,22 @@ for key, question in optional_questions.items():
     if ans == '':
         optional_answers[key] = place_holder[key]
         answers.update(optional_answers)
+
+# emoji
+
+def emoji_creator (passion: str) -> str:
+    return word2emoji(passion.lower())
+    ''' this fuction returns the passion in lower case and turns it in an emoji'''
+
+emoji_questions = {'emoji': 'choose custome emoji'}
+emoji_placeholder = {'emoji': f"{emoji_creator(answers['passion'])}"}
+emoji_answer = {}
+
+for key, emoji_question in emoji_questions.items():
+    ans = input(emoji_question).strip()
+    if ans == '':
+        print('no custrom emoji selected, passion will be turned to emoji')
+        emoji_answer[key] = emoji_placeholder[key]
+        answers.update(emoji_answer)
 
 print(answers)
