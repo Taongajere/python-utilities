@@ -36,7 +36,7 @@ Bonus:
 - Let the user pick from 2-3 different layout styles.
 - Ask the user if they want to save the result into a `.txt` file.
 """
-
+#questions
 questions = {
     'name': 'What is your name?',
     'profession':'what do you do for a living?',
@@ -45,8 +45,6 @@ questions = {
 
 
 answers = {}
-
-
 
 for key, question in questions.items():
     ans = input(question).strip()
@@ -66,8 +64,12 @@ optional_answers = {}
 for key, question in optional_questions.items():
     ans = input(question).strip()
     if ans == '':
+        print('no custome hundle accepted, hundle created from name')
         optional_answers[key] = place_holder[key]
-        answers.update(optional_answers)
+    else:
+        optional_answers[key] = ans
+
+    answers.update(optional_answers)
 
 # emoji
 
@@ -84,6 +86,8 @@ for key, emoji_question in emoji_questions.items():
     if ans == '':
         print('no custrom emoji selected, passion will be turned to emoji')
         emoji_answer[key] = emoji_placeholder[key]
-        answers.update(emoji_answer)
+    else:
+        emoji_answer[key] = ans
+    answers.update(emoji_answer)
 
 print(answers)
