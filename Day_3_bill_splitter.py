@@ -30,5 +30,13 @@ def data(num :int) -> list:
 
 people = data(num_people)
 
-bill_total = input('what is the total bill? ')
+bill_total = int(input('what is the total bill? '))
 
+def even_splitter(bill: int, names: list) -> dict:
+    if len(names) < 2:
+        print (f'you owe the entire amount of {bill}')
+    else:
+        each = bill / len(names)
+        print (f'you each pay {each}')
+
+even_splitter(bill_total, people)
