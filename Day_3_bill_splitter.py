@@ -11,6 +11,8 @@ Your program should:
 5. Display how much each person owes in a clean, readable format.
 """
 
+import textwrap
+
 # Function that takes peoples names and number 
 
 num_people = int(input('how many people are eating? '))
@@ -42,3 +44,17 @@ def even_splitter(bill: int, names: list) -> list:
     
 bill = even_splitter(bill_total, people)
 
+
+# match each person to their owe
+my_bill = {}
+for i in range(len(people)):
+    my_bill[people[i]] = bill
+
+
+# display bill info
+print("\nYour Total Bill\n")
+print("*" * 50)
+#print each key value on it's own line
+for key, value in  my_bill.items():
+    print(textwrap.dedent(f'{key}  {value}'))
+print("*" * 50)
