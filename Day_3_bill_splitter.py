@@ -11,3 +11,24 @@ Your program should:
 5. Display how much each person owes in a clean, readable format.
 """
 
+# Function that takes peoples names and number 
+
+num_people = int(input('how many people are eating? '))
+
+def data(num :int) -> list:
+    names = []
+    if num < 2: 
+        name = input('what is your name? ')
+        names.append(name)
+        return names 
+    else: 
+        for i in range(num): 
+            person = input(f'what is the name of {i+1} ')
+            names.append(person)
+        return names
+    
+
+people = data(num_people)
+
+bill_total = input('what is the total bill? ')
+
